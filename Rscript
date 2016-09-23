@@ -58,7 +58,7 @@ for(i in 1:9)
 }
 png(file = graphs[2])
 plot(monmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
-axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+axis(1,at=1:9,labels=c(seq(6,22,by=2)))
 dev.off()
 
 v <- NROW(tue)

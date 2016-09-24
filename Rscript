@@ -16,7 +16,7 @@ thur <- thur[,-1]
 fri <- fri[,-1]
 sat <- sat[,-1]
 write.function <- function(x){
-  write.table(x, file = "new.csv", append = TRUE, quote = FALSE, sep = ",",
+  write.table(x, file = "new.txt", append = TRUE, quote = FALSE, sep = ",",
            eol = "\n", na = "NA", dec = ".", row.names = FALSE,
           col.names = FALSE,qmethod = c("escape", "double"),
       fileEncoding = "")
@@ -72,15 +72,15 @@ predict.function <- function(a) {
                                              }
 
 graphs <- vector(mode = "character", length = 7)
-graphs[1] <- "1.pnp"
-graphs[2] <- "2.pnp"
-graphs[3] <- "3.pnp"
-graphs[4] <- "4.pnp"
-graphs[5] <- "5.pnp"
-graphs[6] <- "6.pnp"
-graphs[7] <- "7.pnp"
+graphs[1] <- "1.png"
+graphs[2] <- "2.png"
+graphs[3] <- "3.png"
+graphs[4] <- "4.png"
+graphs[5] <- "5.png"
+graphs[6] <- "6.png"
+graphs[7] <- "7.png"
 
-write.csv(0, file = "new.csv")
+write(file = "new.txt")
 v <- NROW(sun)
 w <- vector(mode="integer", length=v)
 sunmean <- vector(, length=9)

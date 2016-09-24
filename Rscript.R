@@ -1,0 +1,219 @@
+data <- read.csv("data.csv")
+
+subsets <- vector(, length=7)
+sun <- subset(data, Day == "Sun")
+mon <- subset(data, Day == "Mon")
+tue <- subset(data, Day == "Tue")
+wed <- subset(data, Day == "Wed")
+thur <- subset(data, Day == "Thur")
+fri <- subset(data, Day == "Fri")
+sat <- subset(data, Day == "Sat")
+sun <- sun[,-1]
+mon <- mon[,-1]
+tue <- tue[,-1]
+wed <- wed[,-1]
+thur <- thur[,-1]
+fri <- fri[,-1]
+sat <- sat[,-1]
+write.function <- function(x){
+  write.table(x, file = "new.csv", append = TRUE, quote = FALSE, sep = ",",
+           eol = "\n", na = "NA", dec = ".", row.names = FALSE,
+          col.names = FALSE,qmethod = c("escape", "double"),
+      fileEncoding = "")
+                           }
+
+disp.function <- function(b){
+  x <-switch (b,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18,
+              20,
+              22)
+  return(x)
+    #write.table(x, file = "new.csv", append = TRUE, quote = FALSE, sep = ",",
+     #         eol = "\n", na = "NA", dec = ".", row.names = FALSE,
+      #        col.names = FALSE,qmethod = c("escape", "double"),
+       #    fileEncoding = "")
+}
+
+predict.function <- function(a) {
+  canceled <- vector(mode = "numeric", length = 4)
+  
+                                   j <- 1
+                                   i <- 1
+                                  while(i<10) {
+                                                if(a[i] < 5 )
+                                                     {
+                                                       x <- disp.function(i)
+                                                       print(x)
+                                                       canceled[j] <- x
+                                                       i <- i+1
+                                                       j <- j + 1
+                                                      }
+                                                 else if (a[i]<12 & i != 9)
+                                                        if (a[i+1]< 20)
+                                                           { 
+                                                            i <- i +1
+                                                            x <-  disp.function(i)
+                                                            print(x)
+                                                            canceled[j] <- x
+                                                            j <- j + 1
+                                                             i <-i+1
+                                                        }  
+                                    i <- i + 1
+                                  }
+                                   
+                                         print(canceled)
+                                         write.function(canceled)
+                                             }
+
+graphs <- vector(mode = "character", length = 7)
+graphs[1] <- "1.png"
+graphs[2] <- "2.png"
+graphs[3] <- "3.png"
+graphs[4] <- "4.png"
+graphs[5] <- "5.png"
+graphs[6] <- "6.png"
+graphs[7] <- "7.png"
+
+write.csv(0, file = "new.csv")
+v <- NROW(sun)
+w <- vector(mode="integer", length=v)
+sunmean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  sunmean[i] <- weighted.mean(sun[,i],w)
+  print(sunmean[i])
+  
+}
+png(file = graphs[1])
+plot(sunmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
+predict.function(sunmean)
+
+v <- NROW(mon)
+w <- vector(mode="integer", length=v)
+monmean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  monmean[i] <- weighted.mean(mon[,i],w)
+  print(monmean[i])
+}
+png(file = graphs[2])
+plot(monmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
+predict.function(monmean)
+
+v <- NROW(tue)
+w <- vector(mode="integer", length=v)
+tuemean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  tuemean[i] <- weighted.mean(tue[,i],w)
+  print(tuemean[i])
+}
+png(file = graphs[3])
+plot(sunmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
+predict.function(tuemean)
+
+v <- NROW(wed)
+w <- vector(mode="integer", length=v)
+wedmean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  wedmean[i] <- weighted.mean(wed[,i],w)
+  print(wedmean[i])
+}
+png(file = graphs[4])
+plot(wedmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
+predict.function(wedmean)
+
+v <- NROW(thur)
+w <- vector(mode="integer", length=v)
+thurmean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  thurmean[i] <- weighted.mean(thur[,i],w)
+  print(thurmean[i])
+}
+png(file = graphs[5])
+plot(thurmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
+predict.function(thurmean)
+
+v <- NROW(fri)
+w <- vector(mode="integer", length=v)
+frimean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  frimean[i] <- weighted.mean(fri[,i],w)
+  print(frimean[i])
+}
+png(file = graphs[6])
+plot(frimean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
+predict.function(frimean)
+
+
+v <- NROW(sat)
+w <- vector(mode="integer", length=v)
+satmean <- vector(, length=9)
+for(i in 1:9)
+{
+  for ( j in 1:v)
+  {
+    w[j] <- j/v *100
+    #print(w[j])
+  }
+  satmean[i] <- weighted.mean(sat[,i],w)
+  print(satmean[i])
+}
+combine <- matrix(c(sunmean,monmean,tuemean,wedmean,thurmean,frimean,satmean),nrow=9)
+write.csv(combine,file="Weighted Mean.csv")
+predict.function(satmean)
+png(file = graphs[7])
+plot(satmean,type="o", xlab ="Hour", ylab = "Number of Passengers",main = "weighted mean" )
+axis(1,at=1:9,labels=c(6,8,10,12,14,16,18,20,22))
+dev.off()
